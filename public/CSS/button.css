@@ -1,0 +1,36 @@
+.bmw {
+    background-color: #fc0000;
+    color: #ffffff;
+    font-size: 1.3em;
+    font-weight: 300;
+    position: relative;
+    outline: none;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 50px;
+    width: 100px;
+    transition: background-color 0.3s;
+  }
+  
+  
+    
+  .ferari {
+    background-color: #fffc3d;
+    color: #000000;
+    font-size: 1.3em;
+    font-weight: 300;
+    position: relative;
+    outline: none;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 50px;
+    width: 100px;
+    transition: background-color 0.3s;
+  }
+  

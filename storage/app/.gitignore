@@ -1,0 +1,4 @@
+/public/storage
+/storage/*.key
+/storage/app/public/evidences
+/storage/app/public/surat_pihak_ketiga
