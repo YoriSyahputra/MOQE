@@ -73,7 +73,7 @@
                                 </div>  
                             @endif
                         @else
-                            No surat pihak ketiga
+                            Tidak ada surat pihak ketiga
                         @endif
                     </td>
                     <td>
