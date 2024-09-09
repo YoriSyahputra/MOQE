@@ -33,5 +33,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/settings/update', [UserController::class, 'updateSettings'])->name('user.settings.update');
 
     
-    Route::post('/logout', [LoginController::class, 'logout'])->name('ticket.login');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('ticket.logout');
 });

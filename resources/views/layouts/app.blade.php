@@ -17,11 +17,12 @@
                 <h1>Monitoring QE</h1>
                 <div class="profile">
                     @if (auth()->user()->profile_photo)
-                        <img src="{{ asset('storage/' . auth()->user()->profile_photo) }}" alt="Profile Photo" class="thumbnail" onclick="openModal('{{ asset('storage/' . auth()->user()->profile_photo) }}', 'image')">
+                        <img src="{{ asset('storage/' . auth()->user()->profile_photo) }}" alt="profile_photo" class="minta" onclick="openModal('{{ asset('storage/' . auth()->user()->profile_photo) }}', 'image')">
                     @else
-                        <img src="{{ asset('storage/default-profile.jpg') }}" alt="Default Profile" class="thumbnail">
+                        <img src="{{ asset('storage/default-profile.jpg') }}" alt="Default Profile" class="">
                     @endif
-                    <form action="{{ route('login') }}" method="POST" style="display: inline;">
+                    <span class="user-name" class="aman">{{ auth()->user()->name }}</span>
+                    <form action="{{ route('ticket.logout') }}" method="POST" style="display: inline;">
                         @csrf
                         <button type="submit" class="edas">Logout</button>
                     </form>
@@ -36,7 +37,6 @@
                     <li><a href="{{ route('ticket.create') }}">Create Ticket</a></li>
                     <li><a href="{{ route('ticket.dashboard') }}">Dashboard</a></li>
                     <li><a href="{{ route('user.settings') }}">Settings</a></li>
-
                 </ul>
             </div>
 

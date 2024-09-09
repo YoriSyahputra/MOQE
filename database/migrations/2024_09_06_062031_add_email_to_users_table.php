@@ -6,21 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up()
     {
-        Schema::table('tickets', function (Blueprint $table) {
-            $table->string('email')->unique()->after('id'); // Menambahkan kolom email yang unik
+        Schema::table('users', function (Blueprint $table) {
+            if (!Schema::hasColumn('users', 'email')) {
+                $table->string('email')->unique()->after('id');
+            }
         });
     }
 
     public function down()
     {
-        Schema::table('tickets', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('email');
         });
     }
-
 };

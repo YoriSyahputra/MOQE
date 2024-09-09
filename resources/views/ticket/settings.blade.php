@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')`
+@section('content')
 <link rel="stylesheet" href="{{asset ('CSS/setting.css')}}">
 
 <div class="settings-container">
@@ -9,6 +9,16 @@
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
 
@@ -35,15 +45,15 @@
 
         <div class="form-group">
             <label for="new_password">New Password</label>
-            <input type="password" id="new_password" name="new_password" >
+            <input type="password" id="new_password" name="new_password">
         </div>
 
         <div class="form-group">
             <label for="new_password_confirmation">Confirm New Password</label>
-            <input type="password" id="new_password_confirmation" name="new_password_confirmation" >
+            <input type="password" id="new_password_confirmation" name="new_password_confirmation">
         </div>
 
         <button type="submit" class="btn-update">Update Settings</button>
     </form>
 </div>
-@endsection 
+@endsection
