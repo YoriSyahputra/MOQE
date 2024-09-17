@@ -3,6 +3,9 @@
 @section('title', 'MonitoringQE')
 
 @section('content')
+
+<link rel="stylesheet" href="{{asset ('CSS/button.css')}}">
+
     <h1>Ticket Details</h1>
 
     <div class="ticket-details">
@@ -33,8 +36,8 @@
     </div>
 
     <div class="actions">
-        <a href="{{ route('ticket.edit', $ticket) }}" class="btn btn-primary">Edit</a>
-        <a href="{{ route('ticket.dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+        <a href="{{ route('ticket.edit', $ticket) }}" class="ferari">Edit</a>
+        <a href="{{ route('ticket.dashboard') }}" class="button-65">Back to Dashboard</a>
     </div>
 @endsection
 
