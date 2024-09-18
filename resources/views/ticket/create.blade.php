@@ -20,7 +20,7 @@
     <form action="{{ route('ticket.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
         <div class="form-group mb-3">
-            <label for="judul_pengajuan">Judul Pengajuan</label>
+            <label for="judul_pengajuan">Nama LOP</label>
             <input type="text" class="form-control" id="judul_pengajuan" name="judul_pengajuan" required>
         </div>
         <div class="form-group mb-3">
@@ -30,7 +30,6 @@
                 <option value="QE PREVENTIF">QE PREVENTIF</option>
             </select>
         </div>
-
         <div class="form-group mb-3">
             <label for="sto">PILIH STO</label>
             <select class="form-control" id="sto" name="sto" required>
@@ -54,10 +53,8 @@
             </select>
         </div>
         
-        <div class="form-group mb-3">
-            <label for="nomer_ticket_insera">Nomer Ticket Insera</label>
-            <input type="text" class="form-control" id="nomer_ticket_insera" name="nomer_ticket_insera">
-        </div>
+        <input type="hidden" id="NAMA_LOP" name="NAMA_LOP">
+
         <div class="form-group mb-3">
             <label for="alamat">Alamat Lengkap</label>
             <textarea class="form-control" id="alamat" name="alamat" required></textarea>
@@ -79,7 +76,6 @@
                 <option value="Closed">Closed</option>
             </select>
         </div>
-
         <div class="form-group mb-3">
             <label for="detail_QE">Detail QE</label>
             <select class="form-control" id="detail_QE" name="detail_QE" required>
@@ -88,7 +84,6 @@
                 <option value="TIANG MIRING/TIANG ROBOH/TIANG KEROPOS">TIANG MIRING/TIANG ROBOH/TIANG KEROPOS</option>
             </select>
         </div>
-        
         <div class="form-group mb-3">
             <label for="titik_kordinasi">Titik Koordinasi</label>
             <input type="text" class="form-control" id="titik_kordinasi" name="titik_kordinasi">
@@ -115,13 +110,84 @@
         </div>
         <div class="form-group mb-3">
             <label for="evidence_path">Evidence</label>
-            <input type="file" class="form-control-file" id="evidence_path" name="evidence_path">
+            <input type="file" class="form-control-file" id="evidence_path" name="evidence_path" onchange="previewFile('evidence_path', 'evidencePreview')">
+            <div id="evidencePreview"></div>
         </div>
         <div class="form-group mb-3">
             <label for="surat_pihak_ketiga_path">Surat Pihak Ketiga</label>
-            <input type="file" class="form-control-file" id="surat_pihak_ketiga_path" name="surat_pihak_ketiga_path" accept=".jpg,.jpeg,.png,.gif,.svg,.pdf,.doc,.docx,.xls,.xlsx,.txt">
+            <input type="file" class="form-control-file" id="surat_pihak_ketiga_path" name="surat_pihak_ketiga_path" accept=".jpg,.jpeg,.png,.gif,.svg,.pdf,.doc,.docx,.xls,.xlsx,.txt" onchange="previewFile('surat_pihak_ketiga_path', 'suratPreview')">
             <small class="form-text text-muted">Accepted file types: jpg, jpeg, png, gif, svg, pdf, doc, docx, xls, xlsx, txt</small>
+            <div id="suratPreview"></div>
         </div>
+        
         <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+</form>
+
+<div class="toast">
+    <div class="toast-content">
+        <i class="fas fa-solid fa-check check"></i>
+        <div class="message">
+
+        </div>
+    </div>
+    <i class="fa-solid fa-xmark close"></i>
+    <div class="progress"></div>
+</div>
+
+        
+@endsection
+
+@section('scripts')
+<script>
+function previewFile(inputId, previewId) {
+    const input = document.getElementById(inputId);
+    const preview = document.getElementById(previewId);
+    const file = input.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = function () {
+        if (file.type.startsWith('image/')) {
+            preview.innerHTML = `<img src="${reader.result}" style="max-width: 200px; max-height: 200px;">`;
+        } else {
+            preview.innerHTML = `<p>File selected: ${file.name}</p>`;
+        }
+    }
+
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        preview.innerHTML = '';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('form');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    
+    // Submit the form
+    fetch(form.action, {
+      method: form.method,
+      body: new FormData(form)
+    }).then(response => {
+      if (response.ok) {
+        showSuccessMessage();
+        form.reset();
+      }
+    });
+  });
+});
+
+function showSuccessMessage() {
+  const message = document.createElement('div');
+  message.className = 'success-message';
+  message.textContent = 'Well done! You successfully created this important ticket.';
+  
+  document.body.appendChild(message);
+  
+  setTimeout(() => {
+    document.body.removeChild(message);
+  }, 3000);
+}previewFile
+</script>
 @endsection

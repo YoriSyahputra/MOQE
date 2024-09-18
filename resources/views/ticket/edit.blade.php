@@ -22,7 +22,7 @@
     @csrf
     @method('PUT')
         <div class="form-group mb-3">
-            <label for="judul_pengajuan">Judul Pengajuan</label>
+            <label for="judul_pengajuan">Nama LOP</label>
             <input type="text" class="form-control" id="judul_pengajuan" name="judul_pengajuan" value="{{ old('judul_pengajuan', $ticket->judul_pengajuan) }}" required>
         </div>
         <div class="form-group mb-3">
@@ -69,7 +69,7 @@
             </select>
         </div>
         <div class="form-group mb-3">
-            <label for="titik_kordinasi">Titik Koordinasi</label>
+            <label for="titik_kordinasi">Titik Koordinat</label>
             <input type="text" class="form-control" id="titik_kordinasi" name="titik_kordinasi" value="{{ old('titik_kordinasi', $ticket->titik_kordinasi) }}">
         </div>
         <div class="form-group mb-3">

@@ -9,11 +9,10 @@ class CreateTicketTable extends Migration
     public function up()
     {
         Schema::create('tickets', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->string('id', 11)->primary();
             $table->string('judul_pengajuan');
             $table->string('jenis_QE');
             $table->string('sto');
-            $table->string('nomer_ticket_insera')->nullable();
             $table->text('alamat');
             $table->text('kebutuhan_material');
             $table->string('progress');

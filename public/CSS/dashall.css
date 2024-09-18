@@ -1,6 +1,5 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f0f4ff, #d6eaff);
     margin: 0;
     padding: 0;
     color: #333;
@@ -10,16 +9,31 @@ body {
 }
 
 .container {
-    flex: 1;
-    display: flex;
+    flex: 0;
     flex-direction: column;
     margin-top: 0px;
+    position: sticky;
+}
+
+
+
+.form-control {
+    border-radius: 0.375rem;
+    border: 1px solid #ced4da;
+    padding: 10px 15px;
+    font-size: 1rem;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .header {
     position: sticky;
     top: 0;
-    background-color: red;
+    background-color: #272c30;
     color: white;
     padding: 30px;
     text-align: left;
@@ -77,17 +91,16 @@ body {
     position: sticky;
 }
 .sidebar {
-    background-color: #5e5e5e;
+    background-color: #272c30;
     padding: 20px;
     color: white;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 250px;
+    width: 200px;
     flex-shrink: 0;
     height: calc(100vh - 160px);
     position: sticky;
     top: 100px;
-    border-radius: 10px;
-    text-align:center; 
+    text-align: center;
 }
 
 .sidebar h2 {
@@ -103,24 +116,25 @@ body {
 }
 
 .sidebar ul li {
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .sidebar ul li a {
     color: white;
     text-decoration: none;
     font-weight: 600;
-    background-color: #444;
-    padding: 10px 15px;
-    border-radius: 30px;
+    background-color: #272c30;
+    padding: 10px 7px;
+    border-radius: 0px; /* Penambahan nilai pada border-radius */
     display: block;
     text-align: center;
     transition: background-color 0.3s ease;
 }
 
 .sidebar ul li a:hover {
-    background-color: #555;
+    background-color: #09ba00;
 }
+    
 
 .content {
     flex: 1;
@@ -345,6 +359,7 @@ body {
     width: 100px;
 }
 
+
 .btn-custom {
   display: inline-block;
     padding: 10px 15px;
@@ -508,34 +523,38 @@ background-color: #0056b3;
 
 /* CSS */
 .edas {
-align-items: center;
-appearance: none;
-background-color: #3EB2FD;
-background-image: linear-gradient(1deg, #4F58FD, #149BF3 99%);
-background-size: calc(100% + 20px) calc(100% + 20px);
-border-radius: 100px;
-border-width: 0;
-box-shadow: none;
-box-sizing: border-box;
-color: #FFFFFF;
-cursor: pointer;
-display: inline-flex;
-font-family: CircularStd,sans-serif;
-font-size: 1rem;
-height: auto;
-justify-content: center;
-line-height: 1.5;
-padding: 6px 20px;
-position: relative;
-text-align: center;
-text-decoration: none;
-transition: background-color .2s,background-position .2s;
-user-select: none;
--webkit-user-select: none;
-touch-action: manipulation;
-vertical-align: top;
-white-space: nowrap;
-}
+      align-items: center;
+      appearance: button;
+      background-color: #0276FF;
+      border-radius: 8px;
+      border-style: none;
+      box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      font-family: "RM Neue",sans-serif;
+      font-size: 100%;
+      line-height: 1.15;
+      margin: 0;
+      padding: 10px 21px;
+      text-align: center;
+      text-transform: none;
+      transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+    
+    .button-22:active {
+      background-color: #006AE8;
+    }
+    
+    .button-22:hover {
+      background-color: #1C84FF;
+    }
 
 .edas:active,
 .edas:focus {
@@ -552,5 +571,168 @@ box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
 
 .user-name{
     margin-right: 20px;
-    color: #000000;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    letter-spacing: 0px;
+    word-spacing: -2.6px;
+    color: #ffffff;
+    font-weight: 400;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: normal;
+    text-transform: uppercase
 }
+
+.header-section {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+*/
+.filter-options {
+    margin-bottom: 10px;
+}
+
+.filter-options input {
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+
+tbody {
+    display: block;
+    height: 1000px;
+    overflow-y: auto;
+}
+
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.samsung-search {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 16px;
+    transition: box-shadow 0.3s ease;
+}
+
+.samsung-search:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
+}
+
+.apple-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.apple-filter select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.huawei-az {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.huawei-az:hover {
+    background-color: #e0e0e0;
+}
+
+.search-bar{
+    border-radius: 20px;
+}
+
+.header-section {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-options {
+    margin-bottom: 10px;
+}
+
+.filter-options input {
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.confirm-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .button-group {
+    margin-top: 20px;
+  }
+  

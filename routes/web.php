@@ -5,6 +5,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BotManController;
 
 // Public routes
 Route::get('/', function () {
@@ -31,7 +32,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/tickets/{ticket}', [TicketController::class, 'destroy'])->name('ticket.destroy');
     Route::get('/settings', [UserController::class, 'settings'])->name('user.settings');
     Route::post('/settings/update', [UserController::class, 'updateSettings'])->name('user.settings.update');
-
+    Route::get('/tickets/results', [TicketController::class, 'results'])->name('ticket.results');
+    Route::post('/logout', [TicketController::class, 'logout'])->name('ticket.logout');
     
-    Route::post('/logout', [LoginController::class, 'logout'])->name('ticket.logout');
+    // New route for expandable rows
+    Route::get('/ticket/{ticket}/details', [TicketController::class, 'getDetails'])->name('ticket.details');
 });

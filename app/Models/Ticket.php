@@ -2,20 +2,23 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'id',
+        'NAMA_LOP',
         'judul_pengajuan',
         'jenis_QE',
+        'detail_QE',
         'sto',
-        'nomer_ticket_insera',
         'alamat',
         'kebutuhan_material',
-        'progress',
-        'detail_QE',
+        'progress', 
         'titik_kordinasi',
         'tingkat_urgensi',
         'pelapor',
@@ -25,7 +28,10 @@ class Ticket extends Model
         'surat_pihak_ketiga_path',
     ];
 
-    // If you want the id to be treated as a string (since it's not an auto-incrementing integer)
+    // If you're using created_at and updated_at timestamps, you can keep this:
+    // protected $timestamps = true;
+
+    // If you're not using default incrementing IDs, add this:
     public $incrementing = false;
     protected $keyType = 'string';
 }

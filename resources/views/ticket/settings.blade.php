@@ -3,6 +3,7 @@
 @section('content')
 <link rel="stylesheet" href="{{asset ('CSS/setting.css')}}">
 
+
 <div class="settings-container">
     <h1>User Settings</h1>
 
@@ -37,10 +38,14 @@
 
         <div class="form-group">
             <label for="profile_photo">Profile Photo</label>
-            <input type="file" id="profile_photo" name="profile_photo">
-            @if (auth()->user()->profile_photo)
-                <img src="{{ asset('storage/' . auth()->user()->profile_photo) }}" alt="Current profile photo" class="current-photo">
-            @endif
+            <input type="file" id="profile_photo" name="profile_photo" onchange="previewImage(this);">
+            <div id="imagePreview">
+                @if (auth()->user()->profile_photo)
+                    <img src="{{ asset('storage/' . auth()->user()->profile_photo) }}" alt="Current profile photo" class="current-photo">
+                @else
+                    <p>No profile photo uploaded</p>
+                @endif
+            </div>
         </div>
 
         <div class="form-group">
@@ -56,4 +61,19 @@
         <button type="submit" class="btn-update">Update Settings</button>
     </form>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+function previewImage(input) {
+    var preview = document.getElementById('imagePreview');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            preview.innerHTML = '<img src="' + e.target.result + '" alt="Profile photo preview" class="current-photo">';
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
 @endsection
