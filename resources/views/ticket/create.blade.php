@@ -143,51 +143,62 @@ function previewFile(inputId, previewId) {
     const input = document.getElementById(inputId);
     const preview = document.getElementById(previewId);
     const file = input.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = function () {
-        if (file.type.startsWith('image/')) {
-            preview.innerHTML = `<img src="${reader.result}" style="max-width: 200px; max-height: 200px;">`;
-        } else {
-            preview.innerHTML = `<p>File selected: ${file.name}</p>`;
-        }
-    }
 
     if (file) {
-        reader.readAsDataURL(file);
+        const fileType = file.type;
+        const fileName = file.name;
+        const fileUrl = URL.createObjectURL(file);
+
+        if (fileType.startsWith('image/')) {
+            preview.innerHTML = `<img src="${fileUrl}" style="max-width: 200px; max-height: 200px;">`;
+        } else if (fileType === 'application/pdf' || 
+                   fileType === 'application/msword' || 
+                   fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
+                   fileType === 'application/vnd.ms-excel' ||
+                   fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+                   fileType === 'text/plain') {
+            const googleDocsUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(fileUrl)}&embedded=true`;
+            preview.innerHTML = `
+                <p>File selected: ${fileName}</p>
+                <iframe src="${googleDocsUrl}" width="100%" height="400px" frameborder="0"></iframe>
+            `;
+        } else {
+            preview.innerHTML = `<p>File selected: ${fileName}</p>`;
+        }
     } else {
         preview.innerHTML = '';
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('form');
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    
-    // Submit the form
-    fetch(form.action, {
-      method: form.method,
-      body: new FormData(form)
-    }).then(response => {
-      if (response.ok) {
-        showSuccessMessage();
-        form.reset();
-      }
+    const form = document.getElementById('ticketForm');
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        
+        fetch(form.action, {
+            method: form.method,
+            body: new FormData(form)
+        }).then(response => {
+            if (response.ok) {
+                showSuccessMessage();
+                setTimeout(() => {
+                    window.location.href = "{{ route('ticket.dashboard') }}";
+                }, 3000);
+            }
+        });
     });
-  });
 });
 
 function showSuccessMessage() {
-  const message = document.createElement('div');
-  message.className = 'success-message';
-  message.textContent = 'Well done! You successfully created this important ticket.';
-  
-  document.body.appendChild(message);
-  
-  setTimeout(() => {
-    document.body.removeChild(message);
-  }, 3000);
-}previewFile
+    const message = document.createElement('div');
+    message.className = 'success-message';
+    message.textContent = 'Well done! You successfully created this important ticket. Redirecting to dashboard...';
+    
+    document.body.appendChild(message);
+    
+    setTimeout(() => {
+        document.body.removeChild(message);
+    }, 3000);
+}
 </script>
 @endsection

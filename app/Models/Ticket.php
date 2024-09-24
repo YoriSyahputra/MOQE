@@ -26,6 +26,8 @@ class Ticket extends Model
         'keterangan',
         'evidence_path',
         'surat_pihak_ketiga_path',
+        'nomer_ticket_insera',
+
     ];
 
     // If you're using created_at and updated_at timestamps, you can keep this:

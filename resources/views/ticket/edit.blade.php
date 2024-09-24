@@ -41,6 +41,10 @@
             </select>
         </div>
         <div class="form-group mb-3">
+            <label for="NAMA_LOP">Nama LOP</label>
+            <input type="text" class="form-control" id="NAMA_LOP" name="NAMA_LOP" value="{{ old('NAMA_LOP', $ticket->NAMA_LOP) }}" readonly>
+        </div>
+        <div class="form-group mb-3">
             <label for="nomer_ticket_insera">Nomer Ticket Insera</label>
             <input type="text" class="form-control" id="nomer_ticket_insera" name="nomer_ticket_insera" value="{{ old('nomer_ticket_insera', $ticket->nomer_ticket_insera) }}">
         </div>

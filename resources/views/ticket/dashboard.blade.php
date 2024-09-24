@@ -4,6 +4,7 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('CSS/button.css') }}">
+<link rel="stylesheet" href="{{ asset('CSS/hover.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <div class="container-fluid">
@@ -43,71 +44,69 @@
         </div>  
     @endif
 
-    <div class="table-responsive">
+        <div class="table-responsive">
         <table id="ticketTable" class="table table-bordered table-striped">
             <div class="table-header">
-                <thead>
-                    <tr>
-                        <th>ID <i class="fas fa-sort"></i></th>
-                        <th>STO <i class="fas fa-sort"></i></th>
-                        <th>Nama LOP <i class="fas fa-sort"></i></th>
-                        <th>Jenis QE <i class="fas fa-sort"></i></th>
-                        <th>Tingkat Urgensi <i class="fas fa-sort"></i></th>
-                        <th>Pelapor <i class="fas fa-sort"></i></th>
-                        <th>Tanggal Pengajuan <i class="fas fa-sort"></i></th>
-                        <th>Evidence</th>
-                        <th>Surat Pihak Ketiga</th>
-                        <th>Actions</th>
-                    </tr>
+                <thead> 
+                <tr>
+                    <th>ID<div class="inil"></div> <i class="fas fa-sort"></i></th>
+                    <th>STO<div class="inil"></div> <i class="fas fa-sort"></i></th>
+                    <th>Nama LOP<div class="inil"></div> <i class="fas fa-sort"></i></th>
+                    <th>Jenis QE<div class="inil"></div> <i class="fas fa-sort"></i></th>
+                    <th>Tingkat Urgensi<div class="inil"></div> <i class="fas fa-sort"></i></th>
+                    <th>Pelapor<div class="inil"></div> <i class="fas fa-sort"></i></th>
+                    <th>Tanggal Pengajuan<div class="inil"></div> <i class="fas fa-sort"></i></th>
+                    <th>Evidence<div class="inil"></div></th>
+                    <th>Surat Pihak Ketiga<div class="inil"></div></th>
+                    <th>Actions</th>
+                </tr>   
                 </thead>
                 </div>
             <tbody>
                 @foreach($tickets as $ticket)
                     <tr class="ticket-row" data-href="{{ route('ticket.show', $ticket) }}">
-                        <td>{{ $ticket->id }}</td>
-                        <td>{{ $ticket->sto }}</td>
-                        <td>{{ $ticket->judul_pengajuan }}</td>
-                        <td>{{ $ticket->jenis_QE }}</td>
-                        <td>{{ $ticket->tingkat_urgensi }}</td>
-                        <td>{{ $ticket->pelapor }}</td>
-                        <td>{{ $ticket->tanggal_pengajuan }}</td>
+                    <div class="inil"><td>{{ $ticket->id }}</td></div>
+                    <div class="inil"><td>{{ $ticket->sto }}</td></div>
+                    <div class="inil"><td>{{ $ticket->NAMA_LOP }}</td></div>
+                    <div class="inil"><td>{{ $ticket->jenis_QE }}</td></div>
+                    <div class="inil"><td>{{ $ticket->tingkat_urgensi }}</td></div>
+                    <div class="inil"><td>{{ $ticket->pelapor }}</td></div>
+                    <div class="inil"><td>{{ $ticket->tanggal_pengajuan }}</td></div>
                       
                         <td>
-                        @if($ticket->evidence_path)
-                            @php
-                                $extension = strtolower(pathinfo($ticket->evidence_path, PATHINFO_EXTENSION));
-                                $isImage = in_array($extension, ['jpg', 'jpeg', 'png', 'gif']);
-                            @endphp
-                            @if($isImage)
-                                <div class="img-container">
-                                    <img src="{{ asset('storage/' . $ticket->evidence_path) }}" alt="Evidence" class="thumbnail" onclick="openModal('{{ asset('storage/' . $ticket->evidence_path) }}', 'image')">
-                                </div>
-                            @else
-                                <a href="#" onclick="openModal('{{ asset('storage/' . $ticket->evidence_path) }}', 'file')">View Evidence</a>
-                            @endif
-                        @else
-                            No evidence
-                        @endif
-                    </td>
-                    <td>
-                        @if($ticket->surat_pihak_ketiga_path)
-                            @php
-                                $extension = strtolower(pathinfo($ticket->surat_pihak_ketiga_path, PATHINFO_EXTENSION));
-                                $isImage = in_array($extension, ['jpg', 'jpeg', 'png', 'gif']);
-                            @endphp
-                            @if($isImage)
-                                <div class="img-container">
-                                    <img src="{{ asset('storage/' . $ticket->surat_pihak_ketiga_path) }}" alt="Surat Pihak Ketiga" class="thumbnail" onclick="openModal('{{ asset('storage/' . $ticket->surat_pihak_ketiga_path) }}', 'image')">
-                                </div>
-                            @else
-                                <div class="maning">
-                                    <a href="#" onclick="openModal('{{ asset('storage/' . $ticket->surat_pihak_ketiga_path) }}', 'file')" class="tombol">SeeFile</a>
-                                </div>  
-                            @endif
-                        @else
-                            Tidak ada surat pihak ketiga
-                        @endif
-                    </td>
+                                @if($ticket->evidence_path)
+                                    @php
+                                        $extension = strtolower(pathinfo($ticket->evidence_path, PATHINFO_EXTENSION));
+                                        $isImage = in_array($extension, ['jpg', 'jpeg', 'png', 'gif']);
+                                    @endphp
+                                    @if($isImage)
+                                        <div class="">
+                                            <img src="{{ asset('storage/' . $ticket->evidence_path) }}" alt="Evidence" class="thumbnail" onclick="openModal('{{ asset('storage/' . $ticket->evidence_path) }}', 'image')">
+                                        </div>
+                                    @else
+                                        <a href="#" onclick="openModal('{{ asset('storage/' . $ticket->evidence_path) }}', 'file')">View Evidence</a>
+                                    @endif
+                                @else
+                                    No evidence
+                                @endif
+                            </td>
+                            <td>
+                                @if($ticket->surat_pihak_ketiga_path)
+                                    @php
+                                        $extension = strtolower(pathinfo($ticket->surat_pihak_ketiga_path, PATHINFO_EXTENSION));
+                                        $isImage = in_array($extension, ['jpg', 'jpeg', 'png', 'gif']);
+                                    @endphp
+                                    @if($isImage)
+                                        <div class="">
+                                            <img src="{{ asset('storage/' . $ticket->surat_pihak_ketiga_path) }}" alt="Surat Pihak Ketiga" class="thumbnail" onclick="openModal('{{ asset('storage/' . $ticket->surat_pihak_ketiga_path) }}', 'image')">
+                                        </div>
+                                    @else
+                                        <a href="#" class="button" onclick="openModal('{{ asset('storage/' . $ticket->surat_pihak_ketiga_path) }}', 'file')">View File</a>
+                                    @endif
+                                @else
+                                    No Surat pihak Ketiga
+                                @endif
+                            </td>
                         <td>
                             <a href="{{ route('ticket.edit', $ticket) }}" class="ferari">Edit</a>
                             <form action="{{ route('ticket.destroy', $ticket) }}" method="POST" style="display: inline;" onsubmit="confirmDelete(event, this)">
@@ -135,6 +134,8 @@
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+
+
     function confirmDelete(event, form) {
   event.preventDefault();
   
@@ -151,7 +152,16 @@
       </div>
     </div>
   `;
-  
+  $('#columnFilter').html(`
+    <option value="">Filter by column...</option>
+    <option value="0">ID</option>
+    <option value="1">STO</option>
+    <option value="2">Nama LOP</option>
+    <option value="3">Jenis QE</option>
+    <option value="4">Tingkat Urgensi</option>
+    <option value="5">Pelapor</option>
+    <option value="6">Tanggal Pengajuan</option>
+`);
   document.body.appendChild(modal);
   
   modal.querySelector('.btn-yes').addEventListener('click', () => {
@@ -296,6 +306,8 @@ $(document).ready(function() {
         }
     });
 
+  
+
     // Modal functionality
     window.openModal = function(src, type) {
         var modal = document.getElementById("fileModal");
@@ -314,8 +326,7 @@ $(document).ready(function() {
         modal.style.display = "none";
     }
 
-    // Initialize
-    adjustTableResponsiveness();
+    
 });
 </script>
 @endsection

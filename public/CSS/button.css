@@ -15,7 +15,8 @@
   text-decoration: none;
   display: flex;
   justify-content: center;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s;    
+  margin: 0 auto;
 }
   
   
@@ -38,9 +39,30 @@
     display: flex;
     justify-content: center;
     transition: background-color 0.3s;
+    margin: 0 auto;
   }
-  
-      
+
+    .ferari02 {
+      background-color: #fffc3d;
+      border: none;  
+      outline: none; 
+      color: #000000;
+      padding: 10px 20px;
+      cursor: pointer; 
+      display: inline-block;
+      width: 55px;
+      padding: 12px;
+      border: none;
+      border-radius: 4px;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+
+
   .toyota {
     background-color: #d6d6d6;
     border: none;  
@@ -59,5 +81,110 @@
     display: flex;
     justify-content: center;
     transition: background-color 0.3s;
+    
   }
   
+
+  .btn-custom {
+    display: inline-block;
+      padding: 10px 15px;
+      font-size: 14px;
+      text-align: center;
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+  
+  .btn-custom:hover {
+  background-color: #0056b3;
+  }
+  
+  .btn-delete {
+  background-color: #dc3545;
+  }
+  
+  .btn-delete:hover {
+  background-color: #c82333;
+  }
+
+  /* Button styling */
+.tombol {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 0 auto;
+  }
+  
+  .tombol:hover {
+  background-color: #0056b3;
+  }
+  
+  .btn-custom, .edas, .tombol {
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-custom:hover, .edas:hover, .tombol:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+  .button-group {
+    margin-top: 20px;
+    justify-items: center;
+  }
+  
+  .button {
+    background-color: #005be4;
+    border: none;  
+    outline: none; 
+    color: #ffffff;
+    padding: 10px 20px;
+    cursor: pointer; 
+    display: inline-block;
+    width: 55px;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    transition: background-color 0.3s;
+    margin: 0 auto;
+  } 
+
+  .button2 {
+    background-color: #005be4;
+    border: none;  
+    outline: none; 
+    color: #ffffff;
+    padding: 10px 20px;
+    cursor: pointer; 
+    display: inline-block;
+    width: 55px;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    transition: background-color 0.3s;
+  } 

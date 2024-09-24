@@ -45,6 +45,7 @@ class TicketController extends Controller
     {
         $validatedData = $this->validateTicketData($request);
         $validatedData['id'] = $this->generateTicketId();
+        $validatedData['nomer_ticket_insera'] = $request->input('nomer_ticket_insera') ?? $validatedData['id'];
 
         $ticket = new Ticket($validatedData);
         $ticket->NAMA_LOP = $this->generateNamaLop($ticket);
@@ -53,6 +54,10 @@ class TicketController extends Controller
         $this->handleFileUpload($request, $ticket, 'surat_pihak_ketiga_path', 'surat_pihak_ketiga');
 
         $ticket->save();
+
+        if ($request->ajax()) {
+            return response()->json(['success' => true, 'message' => 'Ticket created successfully.']);
+        }
 
         return redirect()->route('ticket.dashboard')->with('success', 'Ticket created successfully.');
     }
@@ -71,6 +76,7 @@ class TicketController extends Controller
     {
         $validatedData = $this->validateTicketData($request);
         $ticket->fill($validatedData);
+        $ticket->nomer_ticket_insera = $request->input('nomer_ticket_insera') ?? $ticket->id;
         $ticket->NAMA_LOP = $this->generateNamaLop($ticket);
 
         $this->handleFileUpload($request, $ticket, 'evidence_path', 'evidences');
@@ -80,7 +86,6 @@ class TicketController extends Controller
 
         return redirect()->route('ticket.dashboard')->with('success', 'Ticket updated successfully.');
     }
-
     public function destroy(Ticket $ticket)
     {
         $this->deleteFile($ticket->evidence_path);
@@ -107,20 +112,22 @@ class TicketController extends Controller
             'keterangan' => 'nullable|string',
             'evidence_path' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg,pdf|max:2048',
             'surat_pihak_ketiga_path' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx,xls,xlsx,txt|max:2048',
+            'nomer_ticket_insera' => 'nullable|string|max:255',
         ]);
     }
 
     private function generateTicketId()
     {
         $lastTicket = Ticket::orderBy('id', 'desc')->first();
-        $nextId = $lastTicket ? intval(substr($lastTicket->id, 3)) + 1 : 1;
+        $nextId = $lastTicket ? intval(substr($lastTicket->id, 3)) +1 : 1;
         return 'INC' . str_pad($nextId, 8, '0', STR_PAD_LEFT);
     }
 
     private function generateNamaLop($ticket)
     {
-        return "BDB,{$ticket->sto},{$ticket->jenis_QE},{$ticket->id},{$ticket->judul_pengajuan}";
+        return "BDB,{$ticket->sto},{$ticket->jenis_QE},{$ticket->nomer_ticket_insera},{$ticket->judul_pengajuan}";
     }
+
 
     private function handleFileUpload(Request $request, Ticket $ticket, string $fieldName, string $directory)
     {
@@ -140,12 +147,6 @@ class TicketController extends Controller
         if ($path && file_exists(public_path("storage/$path"))) {
             unlink(public_path("storage/$path"));
         }
-    }
-
-    public function results()
-    {
-        $tickets = Ticket::all();
-        return view('ticket.results', compact('tickets'));
     }
 
     public function getDetails(Ticket $ticket, Request $request)
