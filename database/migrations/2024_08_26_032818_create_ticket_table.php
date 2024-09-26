@@ -20,6 +20,7 @@ class CreateTicketTable extends Migration
             $table->string('titik_kordinasi')->nullable();
             $table->string('tingkat_urgensi');
             $table->string('pelapor');
+            $table->string('no_telepon');
             $table->date('tanggal_pengajuan');
             $table->text('keterangan')->nullable();
             $table->string('evidence_path')->nullable();

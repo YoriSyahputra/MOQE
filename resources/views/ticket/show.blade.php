@@ -19,6 +19,7 @@
         <p><strong>Titik Koordinat:</strong> {{ $ticket->titik_kordinasi ?? 'N/A' }}</p>
         <p><strong>Tingkat Urgensi:</strong> {{ $ticket->tingkat_urgensi }}</p>
         <p><strong>Pelapor:</strong> {{ $ticket->pelapor }}</p>
+        <p><strong>No Telepon Pelapor:</strong> {{ $ticket->no_telepon }}</p>
         <p><strong>Tanggal Pengajuan:</strong> {{ $ticket->tanggal_pengajuan }}</p>
         <p><strong>Keterangan:</strong> {{ $ticket->keterangan ?? 'N/A' }}</p>
         
@@ -38,6 +39,13 @@
         <a href="{{ route('ticket.dashboard') }}" class="toyota">Back to Dashboard</a>
     </div>
 @endsection
+
+@section('modal')
+    <div id="fileModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modalContent"></div>
+    </div>
+    @endsection
 
 @section('modal')
     <div id="fileModal" class="modal">
@@ -68,9 +76,17 @@
         if (imageTypes.includes(fileType)) {
             container.innerHTML = `<img src="${src}" alt="File Preview" onclick="openModal('${src}', 'image')">`;
         } else if (documentTypes.includes(fileType)) {
-            container.innerHTML = `<a href="#" class="button2" onclick="openModal('${src}', 'file')">View File</a>`;
+            if (fileType === 'pdf') {
+                container.innerHTML = `<iframe src="${src}" width="75%" height="900px"></iframe>`;
+            } else {
+                container.innerHTML = `
+                    <div class="file-icon ${fileType}"></div>
+                    <p>Preview not available. <a href="${src}" target="_blank">Download file</a></p>`;
+            }
         } else {
-            container.innerHTML = `<p>File type not supported for preview. <a href="${src}" target="_blank">Download file</a></p>`;
+            container.innerHTML = `
+                <div class="file-icon generic"></div>
+                <p>File type not supported for preview. <a href="${src}" target="_blank">Download file</a></p>`;
         }
     }
 
@@ -130,4 +146,28 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.file-preview {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.file-preview img {
+    max-width: 100%;
+    max-height: 300px;
+    cursor: pointer;
+}
+
+.file-icon {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    margin-bottom: 10px;
+}
+
+.file-icon.pdf { background-image: url('/path/to/pdf-icon.png'); }
+.file-icon.doc, .file-icon.docx { background-image: url('/path/to/doc-icon.png'); }
+.file-icon.xls, .file-icon.xlsx { background-image: url('/path/to/xls-icon.png'); }
+.file-icon.txt { background-image: url('/path/to/txt-icon.png'); }
+.file-icon.generic { background-image: url('/path/to/generic-file-icon.png'); }
 </style>

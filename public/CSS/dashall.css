@@ -30,6 +30,8 @@
     background-color: #f0f4f8;
     font-weight: bold;
     border-bottom: 2px solid #d1d5db;
+    position: sticky;
+    top: 0;
 }
 
 
@@ -50,7 +52,7 @@ tbody {
     overflow-y: auto;
     word-wrap: break-word;
     overflow: hidden;
-
+    
     text-overflow: ellipsis;
 }
 
@@ -63,9 +65,15 @@ tbody tr {
 thead, tbody tr {
     display: table;
     width: 100%;
-    table-layout: fixed;
+    table-layout:fixed;
 }
 
+thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #f8f9fa;
+}
 
 
 .search-bar{
@@ -88,35 +96,44 @@ tbody tr:hover {
 
 
 .table-responsive {
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    height: 100vh; /* Adjust this value as needed */
+    position: relative;
 }
 
-/*  */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    widt
+}
 
-  
-    .table-responsive {
-            overflow-x: auto;
-    }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th {
-            position: relative;
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            padding: 8px;
-            text-align: left;
-            overflow: hidden;
-            word-wrap: break-word;
-        }
-        td {
-            background-color: rgb(256, 256, 256);
-            border: 1px solid #dee2e6;
-            padding: 8px;
-            text-align: left;
-        }
+th {
+
+    border: 1px solid #dee2e6;
+    border-bottom: 2px solid #dee2e6;
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: bold;
+}
+
+td {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    text-align: left;
+}
+
+.table-responsive::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to left, rgba(0,0,0,0.05), transparent);
+    pointer-events: none;
+}
         .resizer {
             position: absolute;
             top: 0;

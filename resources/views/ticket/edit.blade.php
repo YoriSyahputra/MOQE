@@ -28,8 +28,8 @@
         <div class="form-group mb-3">
             <label for="jenis_QE">Jenis QE</label>
             <select class="form-control" id="jenis_QE" name="jenis_QE" required>
-                <option value="QE RELOKASI" {{ old('jenis_QE', $ticket->jenis_QE) == 'QE RELOKASI' ? 'selected' : '' }}>QE RELOKASI</option>
-                <option value="QE PREVENTIF" {{ old('jenis_QE', $ticket->jenis_QE) == 'QE PREVENTIF' ? 'selected' : '' }}>QE PREVENTIF</option>
+                <option value="QE_RELOK" {{ old('jenis_QE', $ticket->jenis_QE) == 'QE_RELOK' ? 'selected' : '' }}>QE RELOKASI</option>
+                <option value="QE_PREVENTIF" {{ old('jenis_QE', $ticket->jenis_QE) == 'QE_PREVENTIF' ? 'selected' : '' }}>QE PREVENTIF</option>
             </select>
         </div>
         <div class="form-group mb-3">
@@ -84,10 +84,17 @@
                 <option value="High" {{ old('tingkat_urgensi', $ticket->tingkat_urgensi) == 'High' ? 'selected' : '' }}>High</option>
             </select>
         </div>
+
         <div class="form-group mb-3">
             <label for="pelapor">Pelapor</label>
             <input type="text" class="form-control" id="pelapor" name="pelapor" value="{{ old('pelapor', $ticket->pelapor) }}" required>
         </div>
+
+        <div class="form-group mb-3">
+            <label for="no_telepom">No telepon Pelanggan</label>
+            <input type="text" class="form-control" id="no_telepon" name="no_telepon" value="{{ old('no_telepon', $ticket->no_telepon) }}" required>
+        </div>
+ 
         <div class="form-group mb-3">
             <label for="tanggal_pengajuan">Tanggal Pengajuan</label>
             <input type="date" class="form-control" id="tanggal_pengajuan" name="tanggal_pengajuan" value="{{ old('tanggal_pengajuan', $ticket->tanggal_pengajuan) }}" required>

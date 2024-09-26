@@ -22,6 +22,7 @@ class Ticket extends Model
         'titik_kordinasi',
         'tingkat_urgensi',
         'pelapor',
+        'no_telepon',
         'tanggal_pengajuan',
         'keterangan',
         'evidence_path',

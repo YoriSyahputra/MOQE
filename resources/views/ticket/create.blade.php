@@ -20,14 +20,14 @@
     <form action="{{ route('ticket.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
         <div class="form-group mb-3">
-            <label for="judul_pengajuan">Nama LOP</label>
+            <label for="judul_pengajuan">Judul Pengajuan</label>
             <input type="text" class="form-control" id="judul_pengajuan" name="judul_pengajuan" required>
         </div>
         <div class="form-group mb-3">
             <label for="jenis_QE">Jenis QE</label>
             <select class="form-control" id="jenis_QE" name="jenis_QE" required>
-                <option value="QE RELOKASI">QE RELOKASI</option>
-                <option value="QE PREVENTIF">QE PREVENTIF</option>
+                <option value="QE_RELOK">QE RELOKASI</option>
+                <option value="QE_PREVENTIF">QE PREVENTIF</option>
             </select>
         </div>
         <div class="form-group mb-3">
@@ -99,6 +99,10 @@
         <div class="form-group mb-3">
             <label for="pelapor">Pelapor</label>
             <input type="text" class="form-control" id="pelapor" name="pelapor" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="no_telepon">No telepon Pelapor</label>
+            <input type="text" class="form-control" id="no_telepon" name="no_telepon" required>
         </div>
         <div class="form-group mb-3">
             <label for="tanggal_pengajuan">Tanggal Pengajuan</label>

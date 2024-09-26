@@ -28,13 +28,15 @@
                 <option value="3">Jenis QE</option>
                 <option value="4">Tingkat Urgensi</option>
                 <option value="5">Pelapor</option>
-                <option value="6">Tanggal Pengajuan</option>
+                <option value="6">No telepon Pelapor</option>
+                <option value="7">Tanggal Pengajuan</option>
             </select>
             <input type="text" id="filterValue" class="form-control" class="search-bar" placeholder="Filter value...">
+            <div class="huawei-az" id="azFilter">A-Z</div>
+
         </div>
         <div class="d-flex justify-content-end align-items-center">
                
-               <div class="huawei-az" id="azFilter">A-Z</div>
            </div>
     </div>
 
@@ -47,7 +49,8 @@
         <div class="table-responsive">
         <table id="ticketTable" class="table table-bordered table-striped">
             <div class="table-header">
-                <thead> 
+                
+            <thead> 
                 <tr>
                     <th>ID<div class="inil"></div> <i class="fas fa-sort"></i></th>
                     <th>STO<div class="inil"></div> <i class="fas fa-sort"></i></th>
@@ -55,6 +58,7 @@
                     <th>Jenis QE<div class="inil"></div> <i class="fas fa-sort"></i></th>
                     <th>Tingkat Urgensi<div class="inil"></div> <i class="fas fa-sort"></i></th>
                     <th>Pelapor<div class="inil"></div> <i class="fas fa-sort"></i></th>
+                    <th>No telepon pelapor<div class="inil"></div> <i class="fas fa-sort"></i></th>
                     <th>Tanggal Pengajuan<div class="inil"></div> <i class="fas fa-sort"></i></th>
                     <th>Evidence<div class="inil"></div></th>
                     <th>Surat Pihak Ketiga<div class="inil"></div></th>
@@ -62,6 +66,8 @@
                 </tr>   
                 </thead>
                 </div>
+
+                
             <tbody>
                 @foreach($tickets as $ticket)
                     <tr class="ticket-row" data-href="{{ route('ticket.show', $ticket) }}">
@@ -71,6 +77,7 @@
                     <div class="inil"><td>{{ $ticket->jenis_QE }}</td></div>
                     <div class="inil"><td>{{ $ticket->tingkat_urgensi }}</td></div>
                     <div class="inil"><td>{{ $ticket->pelapor }}</td></div>
+                    <div class="inil"><td>{{ $ticket->no_telepon ?? 'N/A'}}</div>
                     <div class="inil"><td>{{ $ticket->tanggal_pengajuan }}</td></div>
                       
                         <td>
@@ -152,6 +159,7 @@
       </div>
     </div>
   `;
+
   $('#columnFilter').html(`
     <option value="">Filter by column...</option>
     <option value="0">ID</option>
@@ -160,7 +168,8 @@
     <option value="3">Jenis QE</option>
     <option value="4">Tingkat Urgensi</option>
     <option value="5">Pelapor</option>
-    <option value="6">Tanggal Pengajuan</option>
+    <option value="6">No telepon Pelapor</option>
+    <option value="7">Tanggal Pengajuan</option>
 `);
   document.body.appendChild(modal);
   
